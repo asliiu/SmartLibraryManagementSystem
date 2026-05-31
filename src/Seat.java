@@ -9,7 +9,6 @@ public class Seat {
 
     public void  reserve() {
         status = "Reserved";
-        System.out.println("Seat " + seatId + " is reserved.");
     }
     public void release() {
         status = "Available";
@@ -24,4 +23,5 @@ public class Seat {
     public String getStatus() {
         return status;
     }
+
 }

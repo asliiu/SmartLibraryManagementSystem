@@ -1,21 +1,51 @@
-public class NotificationService {
+import java.util.ArrayList;
+import java.util.List;
+
+public class NotificationService implements Subject {
+
+    private List<Observer> observers;
+
+    public NotificationService(){
+        observers = new ArrayList<>();
+    }
+
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String message) {
+        for(Observer observer : observers)
+            observer.update(message);
+    }
 
     public void sendNotification(Student student, String message) {
-        System.out.println("Notification got sent to " + student.getName() + ": " + message);
+        student.update(message);
     }
+
     public void seatAvailableNotification(Student student) {
-        sendNotification(student, "A seat is now available.");
+        notifyObservers("A seat is now available");
     }
+
     public void BookDeadlineNotification(Student student) {
-        sendNotification(student, "Your borrowed book is approaching its return deadline.");
+        student.update("Your borrowed book is approaching its return deadline.");
     }
+
     public void borrowConfirmationNotification(Student student) {
-        sendNotification(student,"Book borrowed successfully.");
+        student.update("Book borrowed successfully.");
     }
+
     public void reservationConfirmationNotification(Student student) {
-        sendNotification(student, "Seat is reserved successfully.");
+        student.update("Seat is reserved successfully.");
     }
+
     public void reservationExpiredNotification(Student student) {
-        sendNotification(student, "Your seat reservation has expired.");
+        student.update("Your seat reservation has expired.");
     }
 }
