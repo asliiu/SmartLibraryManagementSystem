@@ -359,7 +359,7 @@
   document.getElementById('login-form').addEventListener('submit', function(e) {
   
 
-    
+
     var idVal = document.getElementById('user-id').value.trim();
     var pwVal = document.getElementById('password').value.trim();
     var valid = true;
@@ -379,13 +379,8 @@
     if (!valid) return;
 
     var r = roles[currentRole];
-    if (idVal !== r.demoId || pwVal !== r.demoPass) {
-      document.getElementById('user-id').classList.add('error-input');
-      document.getElementById('password').classList.add('error-input');
-      document.getElementById('id-error').textContent = 'Incorrect ID or password. Try the demo credentials below.';
-      document.getElementById('id-error').classList.add('show');
-      return;
-    }
+ 
+    
 
     var btn = document.getElementById('login-btn');
     btn.disabled = true;
