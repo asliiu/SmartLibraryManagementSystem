@@ -44,4 +44,12 @@ public class NotificationService implements Subject {
     public void reservationExpiredNotification(Student student) {
         student.update("Your reservation has expired.");
     }
+
+    void detach(Student student) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    void attach(Student student) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

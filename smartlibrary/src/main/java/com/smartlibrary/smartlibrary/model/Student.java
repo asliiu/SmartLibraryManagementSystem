@@ -44,4 +44,8 @@ public class Student extends User{
     public String toString() {
         return "Student[no=" + studentNo + ", name=" + getName() + ", email=" + getEmail() + ", priority=" + isPriority + "]";
     }
+
+    void update(String message) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
