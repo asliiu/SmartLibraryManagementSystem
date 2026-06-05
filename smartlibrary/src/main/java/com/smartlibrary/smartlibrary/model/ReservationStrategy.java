@@ -1,3 +1,5 @@
+package com.smartlibrary.smartlibrary.model;
+
 public interface ReservationStrategy {
 
     /**

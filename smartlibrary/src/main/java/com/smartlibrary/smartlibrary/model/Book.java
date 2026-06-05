@@ -1,3 +1,5 @@
+package com.smartlibrary.smartlibrary.model;
+
 public class Book {
     private int bookId;
     private String title;
@@ -18,6 +20,8 @@ public class Book {
         }else
             System.out.println("Book is not available: " + title);
     }
+
+
     public void returnBook() {
         available = true;
         System.out.println("Book is returned: " + title);
@@ -31,6 +35,10 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+        public String getAuthor() {
+        return author;
     }
 
 }
