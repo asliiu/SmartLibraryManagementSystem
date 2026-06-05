@@ -10,9 +10,4 @@ public class PageController {
     public String loginPage() {
         return "login-page";
     }
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "index";
-    }
 }
