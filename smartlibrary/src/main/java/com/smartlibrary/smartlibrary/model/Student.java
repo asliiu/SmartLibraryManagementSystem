@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends User {
+public class Student extends User{
     private String studentNo;
     private boolean isPriority;
     private List<String> notifications;
