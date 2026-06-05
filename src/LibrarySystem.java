@@ -48,16 +48,20 @@ public class LibrarySystem {
     }
 
     public void reserveSeat(Student student, Seat seat, ReservationStrategy strategy) {
-        boolean success=strategy.reserveSeat(student,seat);
 
-        if(success){
-            notificationService.sendNotification(student, "Seat " + seat.getSeatId()+ " has been reserved successfully.");
-        }else {
+        boolean success = strategy.reserveSeat(student, seat);
+
+        if (success) {
+            notificationService.reservationConfirmationNotification(student, seat);
+        } else {
             notificationService.attach(student);
-            notificationService.sendNotification(student, "Seat is not available. You are added to the waiting list.");
-        }
 
+            notificationService.sendNotification(
+                    student,
+                    "Seat is not available. You have been added to the waiting list."
+            );
         }
+    }
 
     public void showAvailableSeats(){
         boolean found = false;
@@ -92,17 +96,26 @@ public class LibrarySystem {
         return null;
     }
 
-        public void joinWaitingList(Student student){
+    public void joinWaitingList(Student student) {
+
         notificationService.attach(student);
 
-        notificationService.sendNotification(student, "You have joined the waiting list.");
-        }
+        notificationService.sendNotification(
+                student,
+                "You have joined the waiting list."
+        );
+    }
 
     public void cancelReservation(Student student, Seat seat) {
+
         seat.release();
-        notificationService.sendNotification(student, "Your reservation has been cancelled.");
-        notificationService.notifyObservers("A seat is now available.");
-        notificationService.detach(student);
+
+        notificationService.sendNotification(
+                student,
+                "Your reservation has been cancelled."
+        );
+
+        notificationService.seatAvailableNotification(seat);
     }
 
     public Book searchBook(String title) {
@@ -115,18 +128,34 @@ public class LibrarySystem {
     }
 
     public void borrowBook(Student student, Book book) {
-        if(book.isAvailable()){
+        if (book.isAvailable()) {
             book.borrow();
-            notificationService.attach(student);
             notificationService.borrowConfirmationNotification(student);
-        }else
+        } else {
             notificationService.sendNotification(student, "Book is not available.");
         }
-
+    }
     public void returnBook(Student student, Book book) {
         book.returnBook();
-        notificationService.detach(student);
-        notificationService.sendNotification(student, "Book got returned successfully.");
+
+        notificationService.sendNotification(
+                student,
+                "Book returned successfully."
+        );
+    }
+
+    public void expireReservation(Student student, Seat seat) {
+
+        seat.release();
+
+        notificationService.reservationExpiredNotification(
+                student,
+                seat
+        );
+
+        notificationService.seatAvailableNotification(
+                seat
+        );
     }
 
     }
