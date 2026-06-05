@@ -358,7 +358,7 @@
 
   document.getElementById('login-form').addEventListener('submit', function(e) {
   
-
+    e.preventDefault();
 
     var idVal = document.getElementById('user-id').value.trim();
     var pwVal = document.getElementById('password').value.trim();
@@ -380,20 +380,13 @@
 
     var r = roles[currentRole];
  
-    
+
 
     var btn = document.getElementById('login-btn');
     btn.disabled = true;
     btn.textContent = 'Signing in...';
 
-    setTimeout(function() {
-      btn.disabled = false;
-      btn.textContent = 'Sign In';
-      document.getElementById('login-form').style.display = 'none';
-      document.getElementById('success-title').textContent = r.successTitle;
-      document.getElementById('success-msg').textContent = r.successMsg;
-      document.getElementById('success-box').style.display = 'block';
-    }, 1000);
+
   });
 </script>
 
